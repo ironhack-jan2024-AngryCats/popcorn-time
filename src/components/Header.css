@@ -1,8 +1,21 @@
 .Header {
-    background-color: rgb(179, 204, 216);
     padding: 1rem;
     margin-bottom: 2rem;
 }
 .Header h1 {
-    color: rgb(0, 107, 161);
+    color: orange;
+}
+
+.Header nav {
+    display: flex;
+    justify-content: center;
+}
+
+.Header nav a {
+    padding: 0 1rem;
+    border-right: 1px solid #fff;
+}
+
+.Header nav a:last-child {
+    border-right: none;
 }
