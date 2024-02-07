@@ -1,5 +1,6 @@
 import { useState } from "react";
 import movies from "../data/movies.json"
+import { Link } from "react-router-dom";
 
 function MovieList(){
 
@@ -34,9 +35,17 @@ function MovieList(){
                             : <img src="https://dummyimage.com/182x268/ffffff/000000" />
                         }
 
-                        <p>Year: {movieDetails.year}</p>
+                        
                         {movieDetails.rating > 8 && <p>RECOMMENDED</p>}
-                        <button onClick={() => {deleteMovie(movieDetails.id)}}>Delete</button>
+
+                        <p>
+                            <Link to={`/movies/${movieDetails.id}`}>More Details</Link>
+                        </p>
+                        
+                        <p>
+                            <button onClick={() => {deleteMovie(movieDetails.id)}}>Delete</button>
+                        </p>
+
                     </div>
                 );
             })}
