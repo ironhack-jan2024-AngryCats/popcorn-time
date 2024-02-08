@@ -1,31 +1,11 @@
-import { useState } from "react";
-import movies from "../data/movies.json"
 import { Link } from "react-router-dom";
 
-function MovieList(){
-
-    const [moviesToDisplay, setMoviesToDisplay] = useState(movies);
-
-    let title = "";
-    if(moviesToDisplay.length > 0){
-        title = <h2>Number of movies: {moviesToDisplay.length}</h2>;
-    } else {
-        title = <h2>Sorry, no movies to display</h2>
-    }
-
-    const deleteMovie = (movieId) => {
-        const newList = moviesToDisplay.filter((movieObj) => {
-            return movieObj.id !== movieId;
-        });
-        setMoviesToDisplay(newList);
-    }
+function MovieList(props){
 
     return(
         <section className="MovieList">
 
-            {title}
-
-            {moviesToDisplay.map( (movieDetails) => {
+            {props.moviesToDisplay.map( (movieDetails) => {
                 return(
                     <div key={movieDetails.id} className="movie card">
                         <h2>Title: {movieDetails.title}</h2>
@@ -43,7 +23,7 @@ function MovieList(){
                         </p>
                         
                         <p>
-                            <button onClick={() => {deleteMovie(movieDetails.id)}}>Delete</button>
+                            <button onClick={() => {props.callbackToDelete(movieDetails.id)}}>Delete</button>
                         </p>
 
                     </div>
