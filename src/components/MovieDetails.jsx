@@ -1,13 +1,13 @@
 import { Link, useParams } from "react-router-dom";
-import movies from "../data/movies.json"
 
-function MovieDetails() {
+function MovieDetails(props) {
 
     const { movieId } = useParams();
 
-    const movieDetails = movies.find((element) => {
+    const movieDetails = props.moviesToDisplay.find((element) => {
         return element.id == movieId;
     });
+
 
     return (
         <section className="MovieDetails">
@@ -20,7 +20,10 @@ function MovieDetails() {
 
             <h3>Year: {movieDetails.year}</h3>
             <h3>Rating: {movieDetails.rating}</h3>
-            <h3>Genres: {movieDetails.genres.map( (str, index) => <span className="badge" key={index}>{str}</span> )}</h3>
+
+            { movieDetails.genres 
+                && <h3>Genres: {movieDetails.genres.map( (str, index) => <span className="badge" key={index}>{str}</span> )}</h3>
+            }
 
             <br />
             <Link to="/">Back to Homepage</Link>
